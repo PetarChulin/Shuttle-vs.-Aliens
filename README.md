@@ -1,3 +1,3 @@
 # Shuttle-vs.-Aliens
 
-very simple scrolling game, download it and try your best...;)
+very simple scrolling game, download it run index.html and try your best...;)
