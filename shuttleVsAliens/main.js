@@ -8,16 +8,6 @@ let controls = document.querySelector('.controls');
 
 start.addEventListener('click', onGameStart);
 gameOver.addEventListener('click', onGameStart);
-// @ definitely use UI for git (like tortoiseGit)
-// @ care for the git log !
-
-// OOP
-//@ Playground.js
-//@ unit/Planet.js
-//@ unit/Ufo.js
-//@ unit/Solar.js
-//@ ....
-//@ lib/utils.js
 
 let shuttle;
 let ufo;
@@ -86,9 +76,8 @@ function onKeyDown(e) {
 function onKeyUp(e) {
     keys[e.code] = false;
 }
-function action(timestamp) { //@ feature: change progressivly the speed
-
-    scene.score >= 2000 ? (game.speed = 4 , area.classList = 'game-area2') : game.speed = 2;  //@ never use ( , )
+function action(timestamp) { 
+    scene.score >= 2000 ? (game.speed = 4 , area.classList = 'game-area2') : game.speed = 2;  
 
     keys.ArrowUp && player.y > 0 ? player.y -= game.speed * 10 : null;
     keys.ArrowDown && player.y + player.height < area.offsetHeight ? player.y += game.speed * 10 : null;
@@ -100,8 +89,7 @@ function action(timestamp) { //@ feature: change progressivly the speed
         : shuttle.classList.remove('shuttle-fire');
 
     // bangs
-    let bangs = document.querySelectorAll('.bang'); //@ cache this stuff -> this.bangs or this.units['bangs']
-    bangs.forEach(bang => {
+    let bangs = document.querySelectorAll('.bang'); 
         bang.x += game.speed * 10;
         bang.style.left = player.x + shuttle.offsetWidth + bang.x + 'px';
         bang.style.right = player.x + shuttle.offsetWidth + bang.x + 'px';
@@ -113,7 +101,7 @@ function action(timestamp) { //@ feature: change progressivly the speed
     if (timestamp - scene.lastUfoSpawn > game.ufosInterval + 40000 * Math.random()) {
         ufo = document.createElement('div');
         ufo.classList.add('ufo');
-        ufo.x = area.offsetWidth - 80; //@ ufo.offsetWidth - avoid hardcoding numbers
+        ufo.x = area.offsetWidth - 80; 
         ufo.style.left = ufo.x + 'px';
         ufo.style.top = (area.offsetHeight - 80) * Math.random() + 'px';
 
@@ -252,13 +240,15 @@ function shot(player) {
 }
 
 
-function collision(first, second) { //@ circle collision
+function collision(first, second) { 
     let firstRect = first.getBoundingClientRect();
     let secondRect = second.getBoundingClientRect();
 
-    //avoid way too loooooooooooong single line logic
-    return !(firstRect.top > secondRect.bottom || firstRect.bottom < secondRect.top || firstRect.right < secondRect.left
-        || firstRect.left > secondRect.right);
+   
+    return !(firstRect.top > secondRect.bottom 
+             || firstRect.bottom < secondRect.top
+             || firstRect.right < secondRect.left
+             || firstRect.left > secondRect.right);
 }
 function gameOverAction() {
     scene.score = 0;
@@ -273,7 +263,6 @@ function gameOverAction() {
     player.x = 15;
     player.y = 300;
 
-    //@ unify ans reduce code duplication
     area.removeChild(shuttle);
     let ufos = document.querySelectorAll('.ufo');
     ufos.forEach(ufo => {
