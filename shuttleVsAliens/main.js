@@ -221,7 +221,7 @@ function action(timestamp) {
         collision(gray, shuttle) ? gameOverAction() : null;
 
         bangs.forEach(bang => {
-            collision(bang, gray) ? (area.removeChild(bang), scene.grayBlood--, gray.innerHTML = `times to hit` + `<br>` + scene.grayBlood,
+            collision(bang, gray) ? (area.removeChild(bang), scene.grayBlood--, gray.innerHTML = `hits remaining` + `<br>` + scene.grayBlood,
                 scene.score += 100) : null;
             scene.grayBlood <= 0 ? (gray.parentElement.removeChild(gray), scene.grayKillsCount++) : null;
         });
